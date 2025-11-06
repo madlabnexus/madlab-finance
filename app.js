@@ -119,10 +119,12 @@ function calcMonth(i){
   const saldoFinal = saldoIni + entradas - saidas;
 
   const reservaNec = (cfg.saude + cfg.contador) * cfg.reservaMeses;
-  const lucroDisp = Math.max(0, saldoFinal - reservaNec);
-  const recomendado = lucroDisp;
+  const guardarReserva = Math.min(saldoFinal, reservaNec);
+  const distribuirCPF = Math.max(0, saldoFinal - guardarReserva);
+  const lucroDisp = distribuirCPF; // compatibilidade com v2
+  const recomendado = distribuirCPF; // manter naming anterior para gráficos
 
-  return { das, inssFolha, inssComp, irpf, impostos, fixas, liquido, saldoFinal, reservaNec, lucroDisp, recomendado, bruto:f };
+  return { das, inssFolha, inssComp, irpf, impostos, fixas, liquido, saldoFinal, reservaNec, guardarReserva, distribuirCPF, lucroDisp, recomendado, bruto:f };
 }
 
 // Tables / KPIs / Charts (same of v1 with adjustments)
@@ -207,8 +209,8 @@ function renderKPIs(){
   $('#kpiDistribuido').textContent = brl(totalDistrib);
   $('#kpiRetido').textContent = brl(Math.max(0, totalSaldo - reservaNec));
   const mesAtual = new Date().getMonth();
-  const rec = calcMonth(mesAtual).recomendado;
-  $('#painelDecisao').textContent = `Este mês você pode distribuir: ${brl(rec)} com segurança.`;
+  const C = calcMonth(mesAtual);
+  $('#painelDecisao').textContent = `Este mês → Distribuir (CPF): ${brl(C.distribuirCPF)} | Guardar (reserva): ${brl(C.guardarReserva)}`;
 }
 
 let ctxLinha=null, ctxBar=null;
@@ -332,7 +334,7 @@ function loadMatrix(){
 function propagateCashflow(){
   for(let i=0;i<11;i++){
     const c = calcMonth(i);
-    const carry = Math.max(0, c.saldoFinal - c.recomendado);
+    const carry = Math.max(0, c.saldoFinal - c.distribuirCPF); // saldoFinal - distribuir = valor a guardar
     state.meses[i+1].saldoInicial = carry;
   }
   persist();
