@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MadLab Finance · v1 (offline)</title>
+  <title>MadLab Finance · v2 (offline)</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header>
-  <h1>MadLab Finance <span>· v1 (offline)</span></h1>
+  <h1>MadLab Finance <span>· v2 (offline)</span></h1>
   <nav>
     <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
     <button class="tab-btn" data-tab="config">Config</button>
@@ -29,26 +29,11 @@
 <main>
 <section id="dashboard" class="tab active">
   <div class="kpis">
-    <div class="kpi">
-      <div class="kpi-label">Margem Líquida</div>
-      <div class="kpi-value" id="kpiMargem">--</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">Carga Tributária</div>
-      <div class="kpi-value" id="kpiCarga">--</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">Reserva Garantida</div>
-      <div class="kpi-value" id="kpiReserva">--</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">Lucro Distribuído</div>
-      <div class="kpi-value" id="kpiDistribuido">--</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">Lucro Retido</div>
-      <div class="kpi-value" id="kpiRetido">--</div>
-    </div>
+    <div class="kpi"><div class="kpi-label">Margem Líquida</div><div class="kpi-value" id="kpiMargem">--</div></div>
+    <div class="kpi"><div class="kpi-label">Carga Tributária</div><div class="kpi-value" id="kpiCarga">--</div></div>
+    <div class="kpi"><div class="kpi-label">Reserva Garantida</div><div class="kpi-value" id="kpiReserva">--</div></div>
+    <div class="kpi"><div class="kpi-label">Lucro Distribuído</div><div class="kpi-value" id="kpiDistribuido">--</div></div>
+    <div class="kpi"><div class="kpi-label">Lucro Retido</div><div class="kpi-value" id="kpiRetido">--</div></div>
   </div>
   <div class="cards">
     <div class="card">
@@ -87,6 +72,73 @@
     </label>
   </div>
   <button class="primary" id="btnAplicarCfg">Aplicar</button>
+
+  <h3>Meses de Incidência (Despesas e INSS)</h3>
+  <div class="monthly-matrix">
+    <div class="row header"><div>Categoria</div><div>Jan</div><div>Fev</div><div>Mar</div><div>Abr</div><div>Mai</div><div>Jun</div><div>Jul</div><div>Ago</div><div>Set</div><div>Out</div><div>Nov</div><div>Dez</div></div>
+    <div class="row"><div>Plano de Saúde</div>
+      <div><input type="checkbox" class="mx saude" data-idx="0"></div>
+      <div><input type="checkbox" class="mx saude" data-idx="1"></div>
+      <div><input type="checkbox" class="mx saude" data-idx="2"></div>
+      <div><input type="checkbox" class="mx saude" data-idx="3"></div>
+      <div><input type="checkbox" class="mx saude" data-idx="4"></div>
+      <div><input type="checkbox" class="mx saude" data-idx="5"></div>
+      <div><input type="checkbox" class="mx saude" data-idx="6"></div>
+      <div><input type="checkbox" class="mx saude" data-idx="7"></div>
+      <div><input type="checkbox" class="mx saude" data-idx="8"></div>
+      <div><input type="checkbox" class="mx saude" data-idx="9"></div>
+      <div><input type="checkbox" class="mx saude" data-idx="10"></div>
+      <div><input type="checkbox" class="mx saude" data-idx="11"></div>
+    </div>
+    <div class="row"><div>Contador</div>
+      <div><input type="checkbox" class="mx contador" data-idx="0"></div>
+      <div><input type="checkbox" class="mx contador" data-idx="1"></div>
+      <div><input type="checkbox" class="mx contador" data-idx="2"></div>
+      <div><input type="checkbox" class="mx contador" data-idx="3"></div>
+      <div><input type="checkbox" class="mx contador" data-idx="4"></div>
+      <div><input type="checkbox" class="mx contador" data-idx="5"></div>
+      <div><input type="checkbox" class="mx contador" data-idx="6"></div>
+      <div><input type="checkbox" class="mx contador" data-idx="7"></div>
+      <div><input type="checkbox" class="mx contador" data-idx="8"></div>
+      <div><input type="checkbox" class="mx contador" data-idx="9"></div>
+      <div><input type="checkbox" class="mx contador" data-idx="10"></div>
+      <div><input type="checkbox" class="mx contador" data-idx="11"></div>
+    </div>
+    <div class="row"><div>INSS Folha (11%)</div>
+      <div><input type="checkbox" class="mx inssfolha" data-idx="0"></div>
+      <div><input type="checkbox" class="mx inssfolha" data-idx="1"></div>
+      <div><input type="checkbox" class="mx inssfolha" data-idx="2"></div>
+      <div><input type="checkbox" class="mx inssfolha" data-idx="3"></div>
+      <div><input type="checkbox" class="mx inssfolha" data-idx="4"></div>
+      <div><input type="checkbox" class="mx inssfolha" data-idx="5"></div>
+      <div><input type="checkbox" class="mx inssfolha" data-idx="6"></div>
+      <div><input type="checkbox" class="mx inssfolha" data-idx="7"></div>
+      <div><input type="checkbox" class="mx inssfolha" data-idx="8"></div>
+      <div><input type="checkbox" class="mx inssfolha" data-idx="9"></div>
+      <div><input type="checkbox" class="mx inssfolha" data-idx="10"></div>
+      <div><input type="checkbox" class="mx inssfolha" data-idx="11"></div>
+    </div>
+    <div class="row"><div>INSS Complementar</div>
+      <div><input type="checkbox" class="mx insscomp" data-idx="0"></div>
+      <div><input type="checkbox" class="mx insscomp" data-idx="1"></div>
+      <div><input type="checkbox" class="mx insscomp" data-idx="2"></div>
+      <div><input type="checkbox" class="mx insscomp" data-idx="3"></div>
+      <div><input type="checkbox" class="mx insscomp" data-idx="4"></div>
+      <div><input type="checkbox" class="mx insscomp" data-idx="5"></div>
+      <div><input type="checkbox" class="mx insscomp" data-idx="6"></div>
+      <div><input type="checkbox" class="mx insscomp" data-idx="7"></div>
+      <div><input type="checkbox" class="mx insscomp" data-idx="8"></div>
+      <div><input type="checkbox" class="mx insscomp" data-idx="9"></div>
+      <div><input type="checkbox" class="mx insscomp" data-idx="10"></div>
+      <div><input type="checkbox" class="mx insscomp" data-idx="11"></div>
+    </div>
+  </div>
+
+  <h3>Propagação Automática de Caixa</h3>
+  <div class="auto-flow">
+    <label><input type="checkbox" id="cfgAutoCaixa"> Ativar modo automático (Saldo Final - Recomendado → Saldo Inicial do próximo mês)</label>
+    <button id="btnPropagar">Propagar até Dezembro</button>
+  </div>
 </section>
 
 <section id="mensal" class="tab">
@@ -127,18 +179,17 @@
 <section id="instrucoes" class="tab">
   <h2>Instruções</h2>
   <ol class="instructions">
-    <li>Abra a aba <b>Config</b>, ajuste <b>DAS efetivo</b>, <b>INSS teto</b>, <b>Plano de saúde</b>, <b>Contador</b>, <b>Pró‑labore</b> e <b>Reserva (meses)</b>.</li>
-    <li>Na aba <b>Mensal</b>, informe o <b>Faturamento</b> e, se quiser, o <b>Saldo Inicial</b> para cada mês.</li>
-    <li>Todos os cálculos (DAS, INSS folha, INSS complementar, IRPF, Fixas, Líquido, Saldo Final) são automáticos.</li>
-    <li>Veja <b>INSS</b> e <b>Resumo</b> para consolidados; <b>Controle de Lucros</b> mostra quanto pode distribuir mantendo a reserva.</li>
-    <li>Use os botões <b>Salvar/Carregar</b> para exportar/importar seus dados (JSON) — tudo roda 100% offline.</li>
+    <li>Na <b>Config</b>, ajuste <b>DAS efetivo</b>, <b>INSS teto</b>, <b>Plano de saúde</b>, <b>Contador</b>, <b>Pró‑labore</b>, <b>Reserva (meses)</b>.</li>
+    <li>Use a <b>Matriz de Meses</b> para marcar quando terá <b>Saúde</b>, <b>Contador</b>, <b>INSS Folha</b> e <b>Complementar</b>.</li>
+    <li>Em <b>Mensal</b>, informe <b>Faturamento</b> e, se quiser, o <b>Saldo Inicial</b> de cada mês.</li>
+    <li>Se ativar <b>Modo Automático</b>, o sistema pode <b>propagar</b> os saldos para o mês seguinte descontando a distribuição recomendada.</li>
+    <li>Use <b>Salvar/Carregar</b> (JSON) para backup. Os dados também ficam no <b>localStorage</b> (serverless).</li>
   </ol>
-  <p class="tip">Dica: este app não precisa de servidor. Basta abrir o <b>index.html</b> no navegador (recomendado: Chrome/Edge).</p>
 </section>
 </main>
 
 <footer>
-  <small>MadLab Finance · v1 · Offline · Sem servidor · Tema dark roxo holográfico</small>
+  <small>MadLab Finance · v2 · Offline · Sem servidor · Tema dark roxo holográfico</small>
 </footer>
 
 <script src="app.js"></script>

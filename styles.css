@@ -28,3 +28,10 @@ footer{padding:10px 20px;border-top:1px solid #241b3f;color:#9a8dd6;text-align:c
 .instructions{line-height:1.7}
 .tip{margin-top:10px;color:#9a8dd6}
 .decision{margin-top:12px;background:#0d0a16;border:1px solid #2c2450;border-radius:12px;padding:12px;color:#9ef39e}
+.monthly-matrix{border:1px solid #2c2450;border-radius:10px;overflow:auto;margin-top:12px}
+.monthly-matrix .row{display:grid;grid-template-columns:160px repeat(12,1fr);gap:6px;padding:8px;border-bottom:1px solid #241b3f;align-items:center}
+.monthly-matrix .row.header{font-weight:700;color:#c7b7ff;background:#0f0b1d;border-bottom:1px solid #2c2450}
+.monthly-matrix .row>div{display:flex;justify-content:center;align-items:center}
+.monthly-matrix .row>div:first-child{justify-content:flex-start;padding-left:8px;color:#a020f0}
+.monthly-matrix input[type=checkbox]{transform:scale(1.1)}
+.auto-flow{display:flex;gap:12px;align-items:center;margin:10px 0}
