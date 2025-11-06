@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MadLab Finance · v1 (offline)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>MadLab Finance <span>· v1 (offline)</span></h1>
+  <nav>
+    <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+    <button class="tab-btn" data-tab="config">Config</button>
+    <button class="tab-btn" data-tab="mensal">Mensal</button>
+    <button class="tab-btn" data-tab="inss">INSS</button>
+    <button class="tab-btn" data-tab="lucros">Controle de Lucros</button>
+    <button class="tab-btn" data-tab="resumo">Resumo</button>
+    <button class="tab-btn" data-tab="instrucoes">Instruções</button>
+  </nav>
+  <div class="actions">
+    <button id="btnSave">Salvar (JSON)</button>
+    <input type="file" id="fileLoad" accept="application/json" hidden>
+    <button id="btnLoad">Carregar</button>
+    <button id="btnReset">Zerar</button>
+  </div>
+</header>
+
+<main>
+<section id="dashboard" class="tab active">
+  <div class="kpis">
+    <div class="kpi">
+      <div class="kpi-label">Margem Líquida</div>
+      <div class="kpi-value" id="kpiMargem">--</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Carga Tributária</div>
+      <div class="kpi-value" id="kpiCarga">--</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Reserva Garantida</div>
+      <div class="kpi-value" id="kpiReserva">--</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Lucro Distribuído</div>
+      <div class="kpi-value" id="kpiDistribuido">--</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Lucro Retido</div>
+      <div class="kpi-value" id="kpiRetido">--</div>
+    </div>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <h3>Bruto × Líquido × Impostos (Mensal)</h3>
+      <canvas id="chartLinha" width="900" height="300"></canvas>
+    </div>
+    <div class="card">
+      <h3>Distribuição de Lucros (Mensal)</h3>
+      <canvas id="chartBar" width="900" height="300"></canvas>
+    </div>
+  </div>
+  <div class="decision" id="painelDecisao">Este mês você pode distribuir: --</div>
+</section>
+
+<section id="config" class="tab">
+  <h2>Configuração</h2>
+  <div class="grid">
+    <label>DAS Efetivo (Anexo V) %
+      <input type="number" id="cfgDas" step="0.001" min="0" max="1" />
+      <small>Ex.: 0.103 = 10,3%</small>
+    </label>
+    <label>INSS teto mensal (R$)
+      <input type="number" id="cfgInssTeto" step="1" min="0" />
+    </label>
+    <label>Plano de Saúde (R$/mês)
+      <input type="number" id="cfgSaude" step="1" min="0" />
+    </label>
+    <label>Contador (R$/mês)
+      <input type="number" id="cfgContador" step="1" min="0" />
+    </label>
+    <label>Pró-labore fixo (R$)
+      <input type="number" id="cfgProlabore" step="1" min="0" />
+    </label>
+    <label>Reserva de Caixa (meses)
+      <input type="number" id="cfgReservaMeses" step="1" min="0" />
+    </label>
+  </div>
+  <button class="primary" id="btnAplicarCfg">Aplicar</button>
+</section>
+
+<section id="mensal" class="tab">
+  <h2>Lançamentos Mensais</h2>
+  <div id="months" class="months"></div>
+</section>
+
+<section id="inss" class="tab">
+  <h2>INSS (Folha + Complementar)</h2>
+  <table id="tblInss">
+    <thead><tr><th>Mês</th><th>INSS Folha (11%)</th><th>Complementar</th><th>Total</th></tr></thead>
+    <tbody></tbody>
+    <tfoot><tr><th>Total</th><th id="sumInssFolha">--</th><th id="sumInssComp">--</th><th id="sumInssTotal">--</th></tr></tfoot>
+  </table>
+</section>
+
+<section id="lucros" class="tab">
+  <h2>Controle de Lucros (Reserva inteligente)</h2>
+  <table id="tblLucros">
+    <thead><tr><th>Mês</th><th>Saldo Final</th><th>Reserva Necessária</th><th>Lucro Disponível</th><th>Recomendado Distribuir</th></tr></thead>
+    <tbody></tbody>
+    <tfoot><tr><th>Total</th><th></th><th></th><th></th><th id="sumDistribuir">--</th></tr></tfoot>
+  </table>
+</section>
+
+<section id="resumo" class="tab">
+  <h2>Resumo Anual</h2>
+  <table id="tblResumo">
+    <thead><tr><th>Mês</th><th>Faturamento</th><th>Impostos</th><th>Fixas</th><th>Líquido</th><th>Saldo Final</th></tr></thead>
+    <tbody></tbody>
+    <tfoot>
+      <tr><th>Total</th>
+      <th id="sumBruto">--</th><th id="sumImp">--</th><th id="sumFix">--</th><th id="sumLiq">--</th><th id="sumSaldo">--</th></tr>
+    </tfoot>
+  </table>
+</section>
+
+<section id="instrucoes" class="tab">
+  <h2>Instruções</h2>
+  <ol class="instructions">
+    <li>Abra a aba <b>Config</b>, ajuste <b>DAS efetivo</b>, <b>INSS teto</b>, <b>Plano de saúde</b>, <b>Contador</b>, <b>Pró‑labore</b> e <b>Reserva (meses)</b>.</li>
+    <li>Na aba <b>Mensal</b>, informe o <b>Faturamento</b> e, se quiser, o <b>Saldo Inicial</b> para cada mês.</li>
+    <li>Todos os cálculos (DAS, INSS folha, INSS complementar, IRPF, Fixas, Líquido, Saldo Final) são automáticos.</li>
+    <li>Veja <b>INSS</b> e <b>Resumo</b> para consolidados; <b>Controle de Lucros</b> mostra quanto pode distribuir mantendo a reserva.</li>
+    <li>Use os botões <b>Salvar/Carregar</b> para exportar/importar seus dados (JSON) — tudo roda 100% offline.</li>
+  </ol>
+  <p class="tip">Dica: este app não precisa de servidor. Basta abrir o <b>index.html</b> no navegador (recomendado: Chrome/Edge).</p>
+</section>
+</main>
+
+<footer>
+  <small>MadLab Finance · v1 · Offline · Sem servidor · Tema dark roxo holográfico</small>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

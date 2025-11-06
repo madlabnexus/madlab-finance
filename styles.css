@@ -1,0 +1,30 @@
+*{box-sizing:border-box}html,body{margin:0;padding:0;background:#000;color:#e8e8e8;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #7000ff;background:linear-gradient(90deg,#0a0014 0%,#120028 100%)}
+h1{margin:0;font-size:20px;color:#a020f0}h1 span{color:#7d3cff;font-weight:600}
+nav{display:flex;gap:8px;flex:1 1 auto}
+.actions{display:flex;gap:8px}
+button{background:#1a1a1a;border:1px solid #3b2b6b;color:#e8e8e8;border-radius:8px;padding:8px 12px;cursor:pointer}
+button:hover{border-color:#a020f0;box-shadow:0 0 10px rgba(160,32,240,.5)}
+button.primary{background:#2a1f4d;border-color:#a020f0}
+.tab{display:none;padding:20px;max-width:1100px;margin:0 auto}
+.tab.active{display:block}
+.tab-btn.active{background:#2a1f4d;border-color:#a020f0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:12px 0}
+label{display:flex;flex-direction:column;gap:6px;background:#0d0a16;border:1px solid #2c2450;border-radius:10px;padding:12px}
+input{background:#151121;border:1px solid #2c2450;border-radius:6px;padding:10px;color:#e8e8e8}
+.months{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.month-card{background:#0d0a16;border:1px solid #2c2450;border-radius:12px;padding:12px}
+.month-card h3{margin-top:0;color:#a020f0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px}
+.kpi{background:#0d0a16;border:1px solid #2c2450;border-radius:12px;padding:12px}
+.kpi-label{font-size:12px;color:#c7b7ff}.kpi-value{font-size:22px;color:#a020f0;font-weight:700}
+.cards{display:grid;grid-template-columns:1fr;gap:16px}
+.card{background:#0d0a16;border:1px solid #2c2450;border-radius:12px;padding:12px}
+table{width:100%;border-collapse:collapse;background:#0d0a16;border:1px solid #2c2450;border-radius:12px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid #241b3f;text-align:right}
+th:first-child,td:first-child{text-align:left}
+tfoot th{color:#a020f0}
+footer{padding:10px 20px;border-top:1px solid #241b3f;color:#9a8dd6;text-align:center;background:#07050d}
+.instructions{line-height:1.7}
+.tip{margin-top:10px;color:#9a8dd6}
+.decision{margin-top:12px;background:#0d0a16;border:1px solid #2c2450;border-radius:12px;padding:12px;color:#9ef39e}
